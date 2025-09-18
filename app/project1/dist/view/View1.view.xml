@@ -1,0 +1,56 @@
+<mvc:View controllerName="project1.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:u="sap.ui.unified" 
+    xmlns:smarttable="sap.ui.comp.smarttable">
+    <Page id="page" title="{i18n>title}">
+    <smarttable:SmartTable
+            id="SmartTableId"
+            tableType="ResponsiveTable"
+            entitySet="MediaFile"
+            placeToolbarInTable="true"
+            class="sapUiSmallMarginTop"
+            enableAutoBinding="true"
+            showRowCount="true"
+            initiallyVisibleFields="fileName">
+
+            <smarttable:customToolbar>
+                <OverflowToolbar id="_IDGenOverflowToolbar">
+                    <ToolbarSpacer id="_IDGenToolbarSpacer" />
+                    <u:FileUploader id="_IDGenFileUploader"
+                        name="myFileUpload"
+                        visible="true"
+                        icon="sap-icon://add" 
+                        buttonOnly="true"
+                        buttonText="Upload Media"
+                        uploadUrl="/odata/v2/media/MediaFile" 
+                        uploadOnChange="true"
+                        useMultipart="false"
+                        change="onUploadChange"
+                        uploadComplete="onUploadCompleted"
+                    />
+                </OverflowToolbar>
+            </smarttable:customToolbar>
+
+            <Table id="_IDGenTable" growing="true">
+                <columns>
+                    <Column id="_IDGenColumn">
+                        <Label id="_IDGenLabel" text="{i18n>fileName}" />
+                    </Column>
+                    <Column id="_IDGenColumn1">
+                        <Label id="_IDGenLabel1" text="mediaType" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem id="_IDGenColumnListItem1" type="Active"> 
+                        <cells>
+                            <Link id="_IDGenLink" text="{fileName}" press="_onDocumentLinkPress" />
+                            <Text id="_IDGenText" text="{mediaType}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </smarttable:SmartTable>
+    </Page>
+</mvc:View>
